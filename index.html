@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sparkle Lights | Professional Christmas Light Installation</title>
+    <meta name="description" content="Professional Christmas light installation, maintenance, and removal services. Make your holidays bright with our expert lighting solutions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary: #1A722F; /* Christmas green from logo */
+            --secondary: #C82A2A; /* Christmas red from logo */
+            --accent: #FFD700; /* Gold for highlights */
+            --dark: #0F4222; /* Dark green for text/backgrounds */
+            --light: #F5F5F5; /* Off-white for backgrounds */
+            --text: #333333; /* Main text color */
+        }
+        
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-left: 10px;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-left: 30px;
+        }
+        
+        .nav-menu a {
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease;
+            background-color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('https://img.freepik.com/free-photo/christmas-new-year-decoration-bauble-christmas-tree_493343-29784.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Twinkling Lights Effect */
+        .lights {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .light {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 5s infinite;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .services-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Form Section */
+        .lead-form {
+            padding: 80px 0;
+            background: linear-gradient(to right, var(--primary), var(--dark));
+            color: white;
+        }
+        
+        .form-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .form-content h2 {
+            color: white;
+        }
+        
+        .form-content h2:after {
+            background-color: var(--accent);
+        }
+        
+        .form-content p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(26, 114, 47, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .social-links li {
+            margin: 0 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                padding: 130px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 80%;
+                height: 100vh;
+                padding: 50px 20px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .nav-menu li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .hero {
+                padding: 110px 0 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .services, .lead-form {
+                padding: 60px 0;
+            }
+            
+            .btn-large {
+                padding: 12px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <!-- Placeholder for logo - replace with actual logo -->
+                <svg width="50" height="50" viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="20" fill="#1A722F" />
+                    <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="10" dy=".3em">SL</text>
+                </svg>
+                <span class="logo-text">Sparkle Lights</span>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="lights" id="lights-container"></div>
+        <div class="container hero-content">
+            <h1>Make Your Holidays Shine Bright</h1>
+            <p>Professional Christmas light installation, maintenance, and removal services for homes and businesses.</p>
+            <a href="#contact" class="btn btn-large">Get a Free Quote</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services-intro">
+                <h2>Our Services</h2>
+                <p>We take care of everything from design to installation and removal, making your holiday season truly magical without the hassle.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://img.freepik.com/premium-vector/greeting-card-with-gift-boxes_95169-594.jpg" alt="Professional Installation" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="service-content">
+                        <h3>Professional Installation</h3>
+                        <p>Our expert team will design and install stunning Christmas light displays that highlight your property's best features.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://img.freepik.com/premium-photo/happy-holidays_1267131-16089.jpg" alt="Maintenance & Repairs" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="service-content">
+                        <h3>Maintenance & Repairs</h3>
+                        <p>We monitor and maintain your lighting display throughout the season, ensuring it stays beautiful and functional.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="https://img.freepik.com/premium-photo/background-illustration-christmas-celebration_674261-194.jpg" alt="Safe Removal & Storage" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <div class="service-content">
+                        <h3>Safe Removal & Storage</h3>
+                        <p>After the holidays, we carefully remove, organize, and store your lights for next year, protecting your investment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Capture Form -->
+    <section class="lead-form" id="contact">
+        <div class="container form-container">
+            <div class="form-content">
+                <h2>Request a Free Quote</h2>
+                <p>Fill out the form and our Christmas lighting experts will contact you to discuss your project and provide a free estimate.</p>
+                <p>We offer professional installation, maintenance, and removal services for both residential and commercial properties.</p>
+            </div>
+            
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="callback">Preferred Callback Time</label>
+                    <select id="callback" name="callback">
+                        <option value="">Select a time</option>
+                        <option value="morning">Morning (8am - 12pm)</option>
+                        <option value="afternoon">Afternoon (12pm - 5pm)</option>
+                        <option value="evening">Evening (5pm - 8pm)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">
+                <!-- Placeholder for logo - replace with actual logo -->
+                <svg width="40" height="40" viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="20" fill="#1A722F" />
+                    <text x="50%" y="50%" text-anchor="middle" fill="white" font-size="10" dy=".3em">SL</text>
+                </svg>
+                <span class="logo-text">Sparkle Lights</span>
+            </div>
+            
+            <ul class="social-links">
+                <li><a href="#"><span>FB</span></a></li>
+                <li><a href="#"><span>IG</span></a></li>
+                <li><a href="#"><span>TW</span></a></li>
+            </ul>
+            
+            <p class="copyright">&copy; 2025 Sparkle Lights Christmas Light Installation. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create twinkling lights effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightsContainer = document.getElementById('lights-container');
+            const numberOfLights = 50;
+            
+            for (let i = 0; i < numberOfLights; i++) {
+                const light = document.createElement('div');
+                light.classList.add('light');
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                light.style.left = `${posX}%`;
+                light.style.top = `${posY}%`;
+                
+                // Random size
+                const size = Math.random() * 4 + 2;
+                light.style.width = `${size}px`;
+                light.style.height = `${size}px`;
+                
+                // Random animation delay
+                const delay = Math.random() * 5;
+                light.style.animationDelay = `${delay}s`;
+                
+                lightsContainer.appendChild(light);
+            }
+            
+            // Mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Form submission handling
+            const contactForm = document.getElementById('contact-form');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // In a real implementation, this would send the form data to a server
+                // and integrate with Google Sheets and Gmail
+                alert('Thank you for your inquiry! We will contact you soon.');
+                contactForm.reset();
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (navMenu.classList.contains('active')) {
+                            hamburger.classList.remove('active');
+                            navMenu.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Google Analytics and Facebook Pixel code would go here
+        // Replace with actual IDs provided by the client
+    </script>
+</body>
+</html>
